@@ -12,6 +12,7 @@ variables:
 
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/'
+  functionAppName: 'jesumeepsynctrigger' 
 
 stages:
 - stage: Build
@@ -51,6 +52,7 @@ stages:
       displayName: 'Deploy Azure Function App'
       inputs:
         connectedServiceNameARM: 'JesumeWIF-v3'
-        appType: 'functionAppLinux'
-        appName: '$(Parameters.AppName)'
+        appType: 'functionApp'
+        appName: '$(functionAppName)'
+        package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         deploymentMethod: runFromPackage
