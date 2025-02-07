@@ -46,3 +46,11 @@ stages:
 
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+    
+    - task: AzureFunctionApp@2
+      displayName: 'Deploy Azure Function App'
+      inputs:
+        connectedServiceNameARM: 'JesumeWIF-v3'
+        appType: 'functionAppLinux'
+        appName: '$(Parameters.AppName)'
+        deploymentMethod: runFromPackage
