@@ -12,7 +12,7 @@ variables:
 
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/'
-  functionAppName: 'jesumeepsynctrigger' 
+  functionAppName: 'jesumepy312' 
 
 stages:
 - stage: Build
@@ -27,15 +27,19 @@ stages:
     steps:
 
     - task: UsePythonVersion@0
-      displayName: 'Use Python 3.9'
+      displayName: 'Use Python 3.12'
       inputs:
-        versionSpec: 3.11 # Functions V2 supports Python 3.6 as of today
+        versionSpec: 3.12 # Functions V2 supports Python 3.6 as of today
 
     - bash: |
         pip install --target="./.python_packages/lib/site-packages" -r ./requirements.txt
       workingDirectory: $(workingDirectory)
       displayName: 'Install application dependencies'
-
+#    - task: CmdLine@2
+#      displayName: 'Install application dependencies'
+#      inputs:
+#        script: 'pip install --target="./.python_packages/lib/site-packages" -r ./requirements.txt'
+#        workingDirectory: '$(System.DefaultWorkingDirectory)/system/ichris'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -55,4 +59,4 @@ stages:
         appType: 'functionApp'
         appName: '$(functionAppName)'
         package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        deploymentMethod: runFromPackage
+        deploymentMethod: auto
