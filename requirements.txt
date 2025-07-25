@@ -2,14 +2,9 @@
 # The Python Worker is managed by Azure Functions platform
 # Manually managing azure-functions-worker may cause unexpected issues
 
-cryptography
-azure-functions
-azure-storage-blob
-azure-identity
-
-requests
-pandas
-numpy
-pyodbc
-sqlalchemy
-azure-ai-formrecognizer
+azure-functions==1.23.0
+fastapi==0.115.12
+azure-identity==1.23.0
+azure-keyvault-secrets==4.10.0
+paramiko==3.5.1
+pydantic_core==2.35.2
